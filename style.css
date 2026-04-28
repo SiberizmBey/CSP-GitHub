@@ -1,0 +1,1075 @@
+/* Temalar */
+:root {
+    /* Karanlık Mod (Varsayılan) */
+    --bg-color: #0d0d0d;
+    --secondary-bg: rgba(20, 20, 20, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border: #222222;
+    --text-main: #ffffff;
+    --text-dim: #888;
+    --accent-red: #901d35;
+}
+
+body.light-mode {
+    --bg-color: #f0f2f5;
+    --secondary-bg: rgba(255, 255, 255, 0.8);
+    --card-bg: rgba(255, 255, 255, 0.5);
+    --border: #dddddd;
+    --text-main: #1a1a1a;
+    --text-dim: #555;
+}
+
+.icon {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+/* Sidebar ikonu aktiflik rengi */
+.icon.active {
+    color: var(--text-main);
+    background: var(--accent-red);
+    padding: 10px;
+    border-radius: 100px;
+}
+
+.icon:hover {
+    color: var(--text-main-dim);
+    background: var(--secondary-bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 100px;
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+.container {
+    display: flex;
+    width: 95vw;
+    height: 90vh;
+    gap: 20px;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.side-item {
+    background: var(--secondary-bg);
+    border-radius: 40px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-dim);
+    gap: 10px;
+    border: 1px solid var(--border);
+}
+
+.profile-section {
+    font-size: 10px;
+}
+
+.profile-pic,
+.profile-pic img {
+    width: 40px;
+    height: 40px;
+    background: #555;
+    border-radius: 50%;
+}
+
+.lang-switch {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    gap: 5px;
+}
+
+.active-lang {
+    background: var(--accent-red);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    /* Flexbox ekledik */
+    flex-direction: column;
+    /* İçindekileri alt alta diz */
+    overflow: hidden;
+    border-radius: 50px;
+    height: 100%;
+    /* Ana yüksekliği koru */
+}
+
+.hero-section {
+    background: url("siberizmpp.png") center/cover;
+    border-radius: 50px;
+    position: relative;
+    width: 100%;
+    /* Artık %100 yapabilirsin */
+    flex-grow: 1;
+    /* Üstteki top-nav'dan kalan tüm boşluğu doldurur */
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+/* Top Nav ve Arama Barı */
+.top-nav {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    width: 400px;
+    /* Genişliği isteğine göre ayarla */
+    display: flex;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    color: var(--text-dim);
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.search-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    padding: 12px 20px 12px 50px;
+    border-radius: 25px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+/* Etkileşim Efektleri */
+.search-container:focus-within {
+    transform: translateY(-2px);
+    width: 450px;
+    /* Odaklanınca hafifçe genişler */
+}
+
+.search-container:focus-within .search-input {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-red);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-container:focus-within .search-icon {
+    color: var(--accent-red);
+}
+
+/* Placeholder rengi */
+.search-input::placeholder {
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.search-icon-wrapper {
+    position: absolute;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+}
+
+#search-engine-icon {
+    border-radius: 4px;
+    /* Logoların köşelerini hafif yumuşatır */
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+/* HERO ELEMENTS */
+.bg-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12rem;
+    opacity: 0.1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.date-badge {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.merch-btn {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.arrow-down {
+    background: var(--accent-red);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+}
+
+.continue-card {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 50px;
+    gap: 20px;
+}
+
+/* Resim Konteynırı */
+.github-avatar-container {
+    width: 80px;
+    /* Senin tasarımdaki genişlik */
+    height: 80px;
+    /* Yükseklik sabit */
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+    /* Kartın köşelerine uyum sağlasın */
+}
+
+#github-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Resmi ezmeden kutuya sığdırır */
+    display: block;
+}
+
+/* Repo İsmi Uzunsa Patlamasın */
+#repo-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* Play Butonu Resmin Üstünde */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    pointer-events: none;
+    /* Tıklamayı engellemesin */
+}
+
+#repo-desc {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* 2 satırdan sonrasını keser */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.next-btn {
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.next-btn:hover {
+    background: #e63946;
+    /* Üstüne gelince Nexa kırmızısı */
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.continue-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+/* Sosyal Medya İkonları İçin Eklemeler */
+.social-icon {
+    text-decoration: none;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+
+/* Üzerine gelince ikonlar kendi renklerini alsın */
+.social-icon.yt:hover {
+    transform: scale(1.1);
+}
+
+.social-icon.dc:hover {
+    transform: scale(1.1);
+}
+
+.social-icon.gh:hover {
+    transform: scale(1.1);
+}
+
+/* SVG'lerin ikon kutusuna tam oturması için */
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(15px);
+    display: none;
+    /* JS ile açılacak */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.calendar-card {
+    background: var(--secondary-bg);
+    border: 1px solid var(--border);
+    padding: 30px;
+    border-radius: 40px;
+    width: 350px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.calendar-day:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.calendar-day.selected {
+    border: 2px solid var(--accent-red);
+    color: var(--accent-red);
+    font-weight: bold;
+}
+
+.calendar-day.has-note {
+    border-bottom: 2px solid var(--accent-red);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.note-input-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+#note-input {
+    background: var(--bg-color);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px;
+    border-radius: 15px;
+    text-align: center;
+    outline: none;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary {
+    flex: 2;
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-danger {
+    flex: 1;
+    background: #333;
+    color: #ff4d4d;
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav-btn {
+    background: var(--border);
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* --- SAYFA GİRİŞ VE POP-UP ANİMASYONLARI --- */
+
+/* Pop-up Açılış (Expansion) */
+@keyframes popupIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+        filter: blur(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Pop-up Kapanış (Shrink) */
+@keyframes popupOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+}
+
+/* Sayfa Elementleri Giriş */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heroZoom {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- ELEMENTLERE ATAMALAR --- */
+.sidebar {
+    animation: fadeInLeft 1s ease forwards;
+}
+
+.top-nav {
+    animation: fadeInUp 1s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-section {
+    animation: heroZoom 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.date-badge {
+    animation: fadeInUp 0.8s ease 0.5s forwards;
+    opacity: 0;
+}
+
+.merch-btn {
+    animation: fadeInUp 0.8s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.continue-card {
+    animation: fadeInUp 0.8s ease 0.7s forwards;
+    opacity: 0;
+}
+
+.bg-text {
+    animation: fadeInUp 2s ease 0.4s forwards;
+    opacity: 0;
+}
+
+/* Pop-up Kartı Ayarı */
+.calendar-card {
+    animation: popupIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Kapanış Sınıfı */
+.modal-closing .calendar-card {
+    animation: popupOut 0.25s ease-in forwards !important;
+}
+
+.modal-overlay {
+    transition: opacity 0.3s ease;
+}
+
+.modal-closing.modal-overlay {
+    opacity: 0;
+}
+
+/* Ayarlar Paneli İçin Özel Card Ayarı */
+.settings-card {
+    min-width: 380px;
+    padding: 10px;
+    /* İçeriği biz yöneteceğiz */
+    overflow: hidden;
+}
+
+.settings-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Flex Satır Yapısı */
+.flex-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Input Genişlikleri */
+.inp-icon {
+    width: 35%;
+}
+
+.inp-url {
+    flex-grow: 1;
+}
+
+/* Modern Inputlar */
+.settings-content input[type="text"] {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.settings-content input:focus {
+    border-color: #e63946;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+}
+
+/* Reset Butonu */
+.btn-reset {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #888;
+    width: 45px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-reset:hover {
+    color: #e63946;
+    border-color: #e63946;
+    transform: rotate(180deg);
+}
+
+/* Ana Butonlar */
+.button-group {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-primary,
+.btn-secondary {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secondary {
+    background: #2a2a2a;
+    color: #aaa;
+}
+
+.btn-secondary:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* Checkbox Tasarımı */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #333;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--accent-red);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Arka Plan Yayma Efekti */
+body.wallpaper-spread::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: var(--bg-img) center/cover;
+    filter: blur(40px) brightness(0.3);
+    /* Blur ve karartma miktarı */
+    transform: scale(1.1);
+    /* Kenarlardaki beyazlamayı önlemek için */
+}
+
+/* Widget Modal'ı Slide Panele Çeviriyoruz */
+#widget-modal {
+    position: fixed;
+    left: 100px;
+    top: 60vh;
+    height: 90vh;
+    width: auto;
+    /* Auto yerine sabit genişlik ver, içeriğin taşmasın */
+
+    /* ÖNEMLİ: Background rengini çok şeffaf yapmalısın ki arkadaki görseli görebilsin */
+    background: var(--secondary-bg) !important;
+
+    /* ÖNEMLİ: Backdrop-filter'ı tarayıcı desteği için prefix ile yazalım */
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+
+    border: 1px solid var(--border);
+    border-radius: 40px;
+
+    /* Hero-section'ın (duvar kağıdı) üstüne çıkması için z-index'i abart */
+    z-index: 99999 !important;
+
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-150%);
+    transition:
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    /* Gizliyken tıklamaları engelle */
+}
+
+#widget-modal.active {
+    transform: translateX(100px);
+    opacity: 1;
+    pointer-events: auto;
+    /* Açıkken tıklanabilsin */
+}
+
+/* Modal Overlay'i (Karartma) Widget İçin İptal Ediyoruz */
+#widget-modal.modal-overlay {
+    background: none;
+    backdrop-filter: none;
+    inset: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* --- KIŞAYOLLAR STİLLERİ --- */
+
+.shortcuts-container {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: calc(100% - 80px);
+}
+
+.shortcuts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.shortcut-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    cursor: grab;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-decoration: none;
+    color: var(--text-main);
+    position: relative;
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.4s ease forwards;
+    user-select: none;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.shortcut-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-red);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(230, 57, 70, 0.2);
+}
+
+.shortcut-card.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+    cursor: grabbing !important;
+}
+
+.shortcut-card.drag-over {
+    background: rgba(230, 57, 70, 0.2);
+    border: 2px solid var(--accent-red);
+    transform: scale(1.05);
+}
+
+.shortcut-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+}
+
+.shortcut-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.shortcut-name {
+    font-size: 11px;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: 0 5px;
+    color: var(--text-main);
+}
+
+.shortcut-delete {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    background: var(--accent-red);
+    border: 2px solid var(--secondary-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0;
+    transition: all 0.2s;
+    color: white;
+}
+
+.shortcut-card:hover .shortcut-delete {
+    opacity: 1;
+}
+
+.shortcut-delete:hover {
+    background: #d62828;
+    transform: scale(1.15);
+}
+
+.add-shortcut-btn {
+    width: 80px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 24px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.shortcuts-container:hover .add-shortcut-btn {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.add-shortcut-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    transform: scale(1.05);
+}
+
+/* Kısayol Modal'ı */
+#shortcut-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+.shortcut-modal-card {
+    width: 420px;
+    animation: popupIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.shortcut-form {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group label {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group input {
+    background: var(--bg-color);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-red);
+    box-shadow: 0 0 12px rgba(230, 57, 70, 0.25);
+    transform: translateY(-2px);
+}
+
+.input-group input::placeholder {
+    color: var(--text-dim);
+}
+
+.helper-text {
+    margin: 0;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-dim);
+    font-size: 11px;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-red);
+}
+
+.input-group p {
+    margin: 0;
+    padding: 0;
+    color: var(--text-dim);
+    font-size: 11px;
+}

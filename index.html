@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siberizm</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="side-item nav-main">
+                <div class="icon active" title="Ana Sayfa"><i class="fa-regular fa-house"></i></div>
+                <div class="icon" id="theme-toggle" title="Temayı Değiştir">
+                    <i class="fa-regular fa-moon" id="theme-icon"></i>
+                </div>
+                <div class="icon" id="widget-trigger" title="Hızlı Panel"><i class="fa-regular fa-star"></i></div>
+            </div>
+
+            <div class="side-item profile-section">
+                <div class="profile-pic"><img
+                        src='https://cdn.discordapp.com/avatars/1174113845502017673/e46521f430ef8148ee2dbe95664836ec.png?size=1024'></img>
+                </div>
+            </div>
+
+            <div class="side-item social-lang">
+                <a href="https://youtube.com/NexaBAG" target="_blank" class="icon social-icon yt" title="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="https://discord.gg/bRGFAbecAc" target="_blank" class="icon social-icon dc" title="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+
+                <a href="https://github.com/SiberizmBey" target="_blank" class="icon social-icon gh" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </aside>
+
+        <div id="widget-modal" class="modal-overlay">
+            <div class="calendar-card widget-card">
+                <div class="calendar-header">
+                    <h3>HIZLI PANEL</h3>
+                    <div class="widget-tabs">
+                        <button class="tab-btn active" data-tab="todo"><i class="fa-solid fa-list-check"></i></button>
+                        <button class="tab-btn" data-tab="weather"><i class="fa-solid fa-cloud-sun"></i></button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <div id="tab-todo" class="tab-pane active">
+                        <div class="todo-input-group">
+                            <input type="text" id="todo-input" placeholder="Yeni görev ekle...">
+                            <button id="add-todo">+</button>
+                        </div>
+                        <div id="todo-list" class="todo-container">
+                        </div>
+                    </div>
+
+                    <div id="tab-weather" class="tab-pane">
+                        <div class="weather-widget">
+                            <h2 id="w-city">Sivas</h2>
+                            <div class="w-main">
+                                <i class="fa-solid fa-cloud-sun w-icon"></i>
+                                <span id="w-temp">12°C</span>
+                            </div>
+                            <p id="w-desc">Parçalı Bulutlu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="close-widget" class="close-modal">KAPAT</button>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <header class="top-nav">
+                <form action="https://www.google.com/search" method="GET" class="search-container" id="search-form">
+                    <div class="search-icon-wrapper">
+                        <img id="search-engine-icon" src="https://www.google.com/favicon.ico" alt="engine" width="18">
+                    </div>
+                    <input type="text" name="q" id="search-input" placeholder="Arama yapın"
+                        class="search-input" autocomplete="off">
+                </form>
+            </header>
+
+            <div id="shortcut-modal" class="modal-overlay" style="display: none;">
+                <div class="calendar-card shortcut-modal-card">
+                    <div class="calendar-header">
+                        <h3>KISAYOL EKLE</h3>
+                    </div>
+
+                    <div class="shortcut-form">
+                        <div class="input-group">
+                            <label>KISAYOL ADI</label>
+                            <input type="text" id="shortcut-name" placeholder="Örn: YouTube">
+                        </div>
+
+                        <div class="input-group">
+                            <label>URL</label>
+                            <input type="url" id="shortcut-url" placeholder="https://example.com">
+                        </div>
+
+                        <div class="input-group">
+                            <label>İKON (Font Awesome sınıfı)</label>
+                            <input type="text" id="shortcut-icon" placeholder="Örn: fa-brands fa-youtube">
+                            <p class="helper-text">Boş bırakırsan site logosunu kullanırız</p>
+                        </div>
+
+                        <div class="button-group">
+                            <button id="save-shortcut" class="btn-primary">KAYDET</button>
+                            <button id="close-shortcut-modal" class="btn-secondary">KAPAT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+
+                <div class="date-badge" id="date-badge-trigger" style="cursor: pointer; transition: all 0.4s ease;">
+                    <p id="episode-status">PLAN TAKVİMİ</p>
+                    <h2 id="current-day">--</h2>
+                    <p id="current-month">---</p>
+                </div>
+
+                <div id="calendar-modal" class="modal-overlay">
+                    <div class="calendar-card">
+                        <div class="calendar-header">
+                            <button id="prev-month" class="nav-btn">❮</button>
+                            <h3 id="month-display">Şubat 2026</h3>
+                            <button id="next-month" class="nav-btn">❯</button>
+                        </div>
+
+                        <div class="calendar-grid-header">
+                            <div>Pt</div>
+                            <div>Sa</div>
+                            <div>Çar</div>
+                            <div>Per</div>
+                            <div>Cum</div>
+                            <div>Cmt</div>
+                            <div>Paz</div>
+                        </div>
+                        <div class="calendar-grid" id="calendar-days"></div>
+
+                        <div class="note-input-section">
+                            <input type="text" id="note-input" placeholder="Not (Maks 10 Karakter)" maxlength="10">
+                            <div class="color-picker-wrapper">
+                                <label>Renk:</label>
+                                <input type="color" id="color-input" value="#e63946">
+                            </div>
+                            <div class="button-group">
+                                <button id="save-note" class="btn-primary">KAYDET</button>
+                                <button id="delete-note" class="btn-danger">SİL</button>
+                            </div>
+                        </div>
+                        <button id="close-cal" class="close-modal">KAPAT</button>
+                    </div>
+                </div>
+
+                <div class="merch-btn">
+                    <div class="arrow-down"><i class="fa-solid fa-gear"></i></div>
+                </div>
+
+                <div id="settings-modal" class="modal-overlay">
+                    <div class="calendar-card settings-card">
+                        <div class="calendar-header">
+                            <h3>AYARLAR</h3>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="color: var(--text-dim); font-size: 12px;">ARAMA MOTORU</label>
+                            <select id="search-engine-select" class="search-input"
+                                style="padding: 8px; margin-top: 5px;">
+                                <option value="https://www.google.com/search">Google</option>
+                                <option value="https://www.bing.com/search">Bing</option>
+                                <option value="https://search.yahoo.com/search">Yahoo</option>
+                                <option value="https://duckduckgo.com/">DuckDuckGo</option>
+                            </select>
+                        </div>
+
+                        <div class="settings-content">
+                            <div class="input-group">
+                                <div class="flex-row">
+                                    <input type="text" id="wallpaper-url" placeholder="Görsel URL'si yapıştır...">
+                                    <button id="reset-wallpaper" class="btn-reset" title="Varsayılana Dön">
+                                        <i class="fa-solid fa-rotate-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <label class="switch">
+                                    <input type="checkbox" id="spread-wallpaper">
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Duvar Kağıdını Yay (Daha Fazla Bellek Tüketebilir)</span>
+                            </div>
+
+                            <div class="social-inputs">
+                                <div class="flex-row">
+                                    <input type="text" id="yt-icon" class="inp-icon" placeholder="fa-brands fa-youtube">
+                                    <input type="text" id="yt-url" class="inp-url" placeholder="YouTube URL">
+                                </div>
+                                <div class="flex-row">
+                                    <input type="text" id="dc-icon" class="inp-icon" placeholder="fa-brands fa-discord">
+                                    <input type="text" id="dc-url" class="inp-url" placeholder="Discord URL">
+                                </div>
+                                <div class="flex-row">
+                                    <input type="text" id="gh-icon" class="inp-icon" placeholder="fa-brands fa-github">
+                                    <input type="text" id="gh-url" class="inp-url" placeholder="GitHub URL">
+                                </div>
+                            </div>
+
+                            <div class="button-group">
+                                <button id="save-settings" class="btn-primary">KAYDET</button>
+                                <button id="close-settings" class="btn-secondary">KAPAT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="continue-card" data-github-user="SiberizmBey">
+                    <div class="video-preview github-avatar-container">
+                        <img id="github-avatar" src="" alt="Avatar">
+                    </div>
+                    <div class="video-info">
+                        <p id="repo-status">YÜKLENİYOR...</p>
+                        <p id="repo-name">---</p>
+                    </div>
+                </div>
+
+                <div class="shortcuts-container">
+                    <div id="shortcuts-grid" class="shortcuts-grid"></div>
+                    <button id="add-shortcut-btn" class="add-shortcut-btn" title="Yeni Kısayol Ekle">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="github.js"></script>
+    <script src="search.js"></script>
+    <script src="settings.js"></script>
+    <script src="shortcuts.js"></script>
+    <script src="script.js"></script>
+    <script src="widget.js"></script>
+    <script src="theme.js"></script>
+    
+</body>
+
+</html>
