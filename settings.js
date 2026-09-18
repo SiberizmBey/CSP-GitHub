@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const engineSelect = document.getElementById("search-engine-select");
     const engineIcon = document.getElementById("search-engine-icon");
 
-    const DEFAULT_WALLPAPER = "siberizmpp.png";
+    const DEFAULT_WALLPAPER = "wpnoel.png";
 
     // Arama Motoru Veritabanı
     const engineData = {

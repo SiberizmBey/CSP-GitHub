@@ -1,5 +1,5 @@
 async function getRealLastRepo() {
-    const username = 'SiberizmBey';
+    const username = document.querySelector('.continue-card')?.dataset.githubUser || 'SiberizmBey';
     const avatarImg = document.getElementById('github-avatar');
     const repoTitle = document.getElementById('repo-name');
     const statusText = document.getElementById('repo-status');
